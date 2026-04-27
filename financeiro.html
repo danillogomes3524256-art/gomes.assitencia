@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Financeiro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+<h2>DG Tech</h2>
+<a href="dashboard.html">Dashboard</a>
+<a href="os.html">OS</a>
+<a href="estoque.html">Estoque</a>
+<a href="financeiro.html">Financeiro</a>
+</div>
+<div class="main">
+<div class="card">
+<h2>Financeiro</h2>
+<p id="r"></p>
+</div>
+</div>
+<script>
+let s=JSON.parse(localStorage.servicos||'[]')
+let total=0
+s.forEach(e=>total+=e.valor)
+r.innerText="Total: R$ "+total
+</script>
+</body>
+</html>

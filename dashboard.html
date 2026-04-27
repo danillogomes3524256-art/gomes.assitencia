@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+<h2>DG Tech</h2>
+<a href="dashboard.html">Dashboard</a>
+<a href="os.html">OS</a>
+<a href="estoque.html">Estoque</a>
+<a href="financeiro.html">Financeiro</a>
+</div>
+<div class="main">
+<div class="card">
+<h2>Resumo</h2>
+<p>OS: <span id="os"></span></p>
+<p>Faturamento: R$ <span id="fat"></span></p>
+<p>Lucro: R$ <span id="lucro"></span></p>
+</div>
+</div>
+<script>
+let s=JSON.parse(localStorage.servicos||'[]')
+let fat=0,l=0
+s.forEach(e=>{fat+=e.valor;l+=e.lucro})
+os.innerText=s.length
+fat.innerText=fat
+lucro.innerText=l
+</script>
+</body>
+</html>

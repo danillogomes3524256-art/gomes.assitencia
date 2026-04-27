@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Estoque</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+<h2>DG Tech</h2>
+<a href="dashboard.html">Dashboard</a>
+<a href="os.html">OS</a>
+<a href="estoque.html">Estoque</a>
+<a href="financeiro.html">Financeiro</a>
+</div>
+<div class="main">
+<div class="card">
+<h2>Estoque</h2>
+<input id="p" placeholder="Produto">
+<input id="q" type="number">
+<button onclick="add()">Salvar</button>
+<ul id="l"></ul>
+</div>
+</div>
+<script>
+let e=JSON.parse(localStorage.estoque||'[]')
+function add(){
+ e.push({p:p.value,q:q.value})
+ localStorage.estoque=JSON.stringify(e)
+ render()
+}
+function render(){
+ l.innerHTML=''
+ e.forEach(i=>l.innerHTML+=`<li>${i.p} (${i.q})</li>`)
+}
+render()
+</script>
+</body>
+</html>

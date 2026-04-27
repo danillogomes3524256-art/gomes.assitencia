@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>OS</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div class="sidebar">
+<h2>DG Tech</h2>
+<a href="dashboard.html">Dashboard</a>
+<a href="os.html">OS</a>
+<a href="estoque.html">Estoque</a>
+<a href="financeiro.html">Financeiro</a>
+</div>
+<div class="main">
+<div class="card">
+<h2>Nova OS</h2>
+<input id="cliente" placeholder="Cliente">
+<input id="valor" type="number" placeholder="Valor">
+<input id="custo" type="number" placeholder="Custo">
+<button onclick="add()">Salvar</button>
+<table><tbody id="lista"></tbody></table>
+</div>
+</div>
+<script>
+let s=JSON.parse(localStorage.servicos||'[]')
+
+function add(){
+ let lucro=Number(valor.value)-Number(custo.value)
+ s.push({cliente:cliente.value,valor:Number(valor.value),custo:Number(custo.value),lucro})
+ localStorage.servicos=JSON.stringify(s)
+ render()
+}
+
+function pdf(e){
+ const {jsPDF}=window.jspdf
+ let d=new jsPDF()
+ d.text(e.cliente,20,20)
+ d.text("R$ "+e.valor,20,30)
+ d.save("os.pdf")
+}
+
+function render(){
+ lista.innerHTML=''
+ s.forEach((e,i)=>{
+ lista.innerHTML+=`<tr>
+ <td>${e.cliente}</td>
+ <td>R$ ${e.lucro}</td>
+ <td><button onclick='pdf(${JSON.stringify(e)})'>PDF</button></td>
+ </tr>`
+ })
+}
+render()
+</script>
+</body>
+</html>
