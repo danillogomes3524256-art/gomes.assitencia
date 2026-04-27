@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>OS</title></head>
+<body style="font-family:Arial">
+<h2>Nova OS</h2>
+<input id="cliente" placeholder="Cliente">
+<input id="valor" placeholder="Valor">
+<button onclick="salvar()">Salvar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let os = JSON.parse(localStorage.getItem('os')||'[]');
+
+function salvar(){
+ os.push({c:cliente.value,v:valor.value});
+ localStorage.setItem('os',JSON.stringify(os));
+ carregar();
+}
+
+function carregar(){
+ lista.innerHTML='';
+ os.forEach(o=>{
+  lista.innerHTML+=`<li>${o.c} - R$ ${o.v}</li>`;
+ });
+}
+carregar();
+</script>
+</body>
+</html>
